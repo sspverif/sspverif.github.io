@@ -1,0 +1,282 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Pseudocode - SSPVerif</title>
+                
+
+        <!-- Custom HTML head -->
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+                <link rel="icon" href="favicon.svg">
+                        <link rel="shortcut icon" href="favicon.png">
+                <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+                <link rel="stylesheet" href="css/print.css" media="print">
+        
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+                <link rel="stylesheet" href="fonts/fonts.css">
+        
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+            </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="pseudocode.html" class="active"><strong aria-hidden="true">2.</strong> Pseudocode</a></li></ol>            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                                                <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                                            </div>
+
+                    <h1 class="menu-title">SSPVerif</h1>
+
+                    <div class="right-buttons">
+                                                <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                                                                        
+                    </div>
+                </div>
+
+                                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="draft"><a class="header" href="#draft">Draft</a></h1>
+<p>cb: I am not using the correct syntax here yet,
+I am just writing the text and listing the items
+which I'd like to include.
+TODO:</p>
+<ul>
+<li>discuss brackets around statements</li>
+</ul>
+<h1 id="game-definitions"><a class="header" href="#game-definitions">Game Definitions</a></h1>
+<h2 id="types"><a class="header" href="#types">Types</a></h2>
+<p>The type of a variable specifies which
+kind of values it can take, e.g., whether
+x is an integer (Int) or a bistring (bits*).
+While pseudocode in the cryptographic literature
+usually does not specify the type of variables
+explicitly, types are useful for formal verification,
+so we require pseudo-code to specify the type of each 
+variable, e.g., x: Bits(*).</p>
+<h3 id="supported-types"><a class="header" href="#supported-types">Supported Types</a></h3>
+<p>Our pseudo-code supports the following types:</p>
+<ul>
+<li>TODO</li>
+<li>TODO</li>
+<li>TODO</li>
+</ul>
+<h3 id="botnone-and-maybe-types"><a class="header" href="#botnone-and-maybe-types">Bot/None and Maybe Types</a></h3>
+<p>In pseudo-code, we often want to check whether a
+variable has already been assigned or whether a table
+has already been assigned at a particular index. In
+pseudocode, we encode this by checking whether
+x = none(Bits(<em>)). Here, a subtlety in typing comes
+into place. Namely, if x is supposed to be of type
+Bits(</em>), then the value &quot;unassigned&quot; is not of type
+Bits(<em>). Thus, if there is a possibility for x to be
+unassigned, then x needs to be originally declared
+as being of Maybe type which means, either bits</em>
+or none(Bits(<em>)). We write x : Maybe(Bits(</em>)). Indeed,
+since in security games, most variables can be
+undefined, most variables will indeed be of type
+Maybe(type). Given any type type, the constructor</p>
+<p>Maybe(type)</p>
+<p>builds a new type which, in addition to type, includes
+a none symbol. If x is of type type, then we can use
+the operator</p>
+<p>to obtain a variable which has the same value as x,
+but is of type Maybe.</p>
+<h4 id="tuple-types"><a class="header" href="#tuple-types">tuple types</a></h4>
+<p>Given n types type_1,..,type_n, the following tuple
+type is also defined:</p>
+<p>TODO</p>
+<p>The tuple operator for constructing types can be
+applied recursively, i.e., type_1,...,type_n might
+also already be tuple types.</p>
+<h4 id="table-types"><a class="header" href="#table-types">table types</a></h4>
+<p>Given two types type_1 and type_2, we define
+a table with entries of type_2 and indices of type_1
+as follows:</p>
+<p>TODO</p>
+<h4 id="function-types"><a class="header" href="#function-types">function types</a></h4>
+<p>TODO</p>
+<h3 id="type-errors"><a class="header" href="#type-errors">Type Errors</a></h3>
+<p>You will get a typecheck error when...</p>
+<h2 id="pseudocode"><a class="header" href="#pseudocode">Pseudocode</a></h2>
+<p>Our pseudocode style follows popular convention used in
+the cryptographic literature.</p>
+<h3 id="statements"><a class="header" href="#statements">Statements</a></h3>
+<p>Assignments
+x &lt;- expr</p>
+<p>Table Assignments
+T[x] &lt;- y</p>
+<p>Sampling
+x &lt;-$ S</p>
+<h3 id="expressions"><a class="header" href="#expressions">Expressions</a></h3>
+<p>TODO</p>
+<h2 id="packages"><a class="header" href="#packages">Packages</a></h2>
+<p>A package is a base objects, of which multiple <em>instances</em>
+can later be used, cf. Section~\ref{X}. It consists of 
+a <em>state</em>, <em>parameters</em>, the set of <em>oracles</em> it defines
+as well as the set of oracles it calls (imports).</p>
+<h3 id="state"><a class="header" href="#state">State</a></h3>
+<h3 id="parameters"><a class="header" href="#parameters">Parameters</a></h3>
+<h3 id="oracles"><a class="header" href="#oracles">Oracles</a></h3>
+<h3 id="oracle-imports"><a class="header" href="#oracle-imports">Oracle imports</a></h3>
+<h2 id="package-instances"><a class="header" href="#package-instances">Package Instances</a></h2>
+<p>Each package instance needs to specify the <em>name</em> of the
+package instance, the <em>parameters</em> which this package
+instance should use as well as the <em>types</em> of the
+arguments which it takes as well as the types of
+the tables, arguments, and return values.</p>
+<h3 id="package-instance-name"><a class="header" href="#package-instance-name">Package Instance name</a></h3>
+<h3 id="parameters-1"><a class="header" href="#parameters-1">Parameters</a></h3>
+<h2 id="composition"><a class="header" href="#composition">Composition</a></h2>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                                                    <a rel="prev" href="introduction.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+                        
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                                    <a rel="prev" href="introduction.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+                            </nav>
+
+        </div>
+
+        
+        
+        
+                <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+        
+                <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+        
+    </body>
+</html>
