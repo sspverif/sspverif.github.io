@@ -241,6 +241,8 @@ the tables, arguments, and return values.</p>
 <h3 id="parameters-1"><a class="header" href="#parameters-1">Parameters</a></h3>
 <h2 id="composition"><a class="header" href="#composition">Composition</a></h2>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="commandline-client"><a class="header" href="#commandline-client">Commandline Client</a></h1>
+<h2 id="directory-layout"><a class="header" href="#directory-layout">Directory Layout</a></h2>
+<p>The <code>ssp</code> binary operates on an directory containing both <code>*.pkg.ssp</code> package definitions and <code>*.comp.ssp</code> composition definitions. By default it will process all of them.</p>
 <h2 id="subcommands"><a class="header" href="#subcommands">Subcommands</a></h2>
 <h3 id="graph"><a class="header" href="#graph">Graph</a></h3>
 <p>Extracts the composition graph in the dot graph-format for further consumption.</p>
@@ -249,6 +251,18 @@ the tables, arguments, and return values.</p>
 <p>The individual dotfiles can be converted to image files with the <code>dot</code> utility (graphviz)</p>
 <pre><code>dot -T svg outdir/Composition.dot &gt; outdir/Composition.svg
 </code></pre>
+<h3 id="check"><a class="header" href="#check">Check</a></h3>
+<p>Run all transformations (in particular do typechecking) but do not generate outputs.</p>
+<pre><code>ssp check &lt;DIRNAME&gt;
+</code></pre>
+<h3 id="smt"><a class="header" href="#smt">SMT</a></h3>
+<p>Produce smt output for all compositions</p>
+<pre><code>ssp smt &lt;DIRNAME&gt;
+</code></pre>
+<p>One can use <code>z3</code> to verify things basically look OK (it should return <code>sat</code>)</p>
+<pre><code>ssp smt &lt;DIRNAME&gt; | z3 -smt2 -in
+</code></pre>
+<p>Though one needs additional code to actually solve anything</p>
 
                     </main>
 
