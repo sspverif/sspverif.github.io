@@ -4,3 +4,5 @@ language = "en"
 multilingual = false
 src = "src"
 title = "SSPVerif"
+git-repository-url = "https://github.com/sspverif/sspverif.github.io"
+git-repository-icon = "fa-github"
