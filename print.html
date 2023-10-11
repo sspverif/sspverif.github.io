@@ -288,7 +288,12 @@ the tables, arguments, and return values.</p>
 <li>bin/</li>
 </ul>
 <p>The parser, well, parses the pseudocode into the types defined in the files listed above. This is just &quot;dumb&quot; parsing for the most part, and we still need to do some static analysis like e.g. type checking. All of this is done by transforms. These all live in the transforms directory. We will later take a closer look at them. In the writers directory we have code that encodes compositions etc. in different formats. This is also where the smt code generator lives. The cli folder contains some helper code for our command-line interface. Nothing super exciting. The examples directory contains composition code back from when we didn't have a parser for the pseudocode yet. We should probably delete it. And finally, the code for the executable is in the bin folder.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="for-loops"><a class="header" href="#for-loops">for loops</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><p>To prove that oracles with for-loops provide the same input-output-behaviour, the induction proceeds in sub-steps. We first prove that if invariant(Left-old,Right-old) holds, then loop-invariant holds on the left and right oracle state after running all the code up to the for loop. Then, we prove that if loop-invariant holds before a loop step, it also holds after a loop step. Finally, we prove that if the loop-invariant holds in the end of the for-loop, then the invariant holds on Left-new and Right-new.</p>
+<p>Limitations</p>
+<ul>
+<li>We require the two for-loops to be of the same length.</li>
+<li>Aborts need to be at identical times on the left and the right.</li>
+</ul>
 
                     </main>
 
