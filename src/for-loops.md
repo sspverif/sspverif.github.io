@@ -3,3 +3,4 @@ To prove that oracles with for-loops provide the same input-output-behaviour, th
 Limitations
 - We require the two for-loops to be of the same length.
 - Aborts need to be at identical times on the left and the right.
+- Randomness mapping can only be done within a single iteration of the for loop.
