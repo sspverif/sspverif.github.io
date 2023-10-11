@@ -5,3 +5,4 @@
 - [Randomness](./randomness.md)
 - [Commandline](./cli.md)
 - [Rust Code](./rust-code.md)
+- [for loops](./for-loops.md)
